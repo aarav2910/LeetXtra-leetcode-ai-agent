@@ -17,7 +17,7 @@ from langsmith import get_current_run_tree, traceable
 from openai import OpenAI
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 load_dotenv(PROJECT_ROOT / ".env")
 
 # LangGraph/LangSmith accept both the current variable names and the older
@@ -60,12 +60,7 @@ def _resolve_settings(provider_settings: dict[str, Any] | None) -> dict[str, str
     if provider != "groq":
         model = _DEFAULT_MODELS[provider]
 
-    env_key = {
-        "openai": "OPENAI_API_KEY",
-        "gemini": "GEMINI_API_KEY",
-        "groq": "GROQ_API_KEY",
-    }[provider]
-    api_key = str(selected.get("api_key", "")).strip() or os.getenv(env_key, "").strip()
+    api_key = str(selected.get("api_key", "")).strip()
     if not api_key:
         raise RuntimeError(f"Add your {provider.title()} API key in the extension Settings.")
     if len(api_key) > 512:

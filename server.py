@@ -1,6 +1,6 @@
 """Local API for the LeetCode code assistant extension.
 
-Run with: venv/bin/python final-version/server.py
+Run with: venv/bin/python server.py
 The server only listens on 127.0.0.1.
 """
 
