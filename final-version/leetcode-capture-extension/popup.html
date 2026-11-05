@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LeetXtra</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="brand-title" aria-label="LeetXtra">LEET<span class="brand-x">X</span>TRA</div>
+  <div id="app-view" class="app-view">
+  <header class="topbar">
+    <h1 id="problem-title">Capture a LeetCode question</h1>
+    <button id="capture" class="capture-button" type="button">Capture</button>
+  </header>
+  <div id="capture-status" class="capture-status" aria-live="polite">Capture the current question to load its code.</div>
+  <div class="language-row">
+    <label class="language-control" for="language">Language
+      <select id="language">
+        <option value="Python">Python</option>
+        <option value="C++">C++</option>
+      </select>
+    </label>
+    <button id="settings-open" class="settings-icon" type="button" aria-label="Open settings" title="Settings">⚙️</button>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="Code tools">
+    <button class="tab active" id="tab-error" role="tab" aria-selected="true" aria-controls="panel-error">Error check</button>
+    <button class="tab" id="tab-analysis" role="tab" aria-selected="false" aria-controls="panel-analysis">Analyze</button>
+    <button class="tab" id="tab-optimization" role="tab" aria-selected="false" aria-controls="panel-optimization">Optimize</button>
+    <button class="tab" id="tab-youtube" role="tab" aria-selected="false" aria-controls="panel-youtube">Walkthrough</button>
+    <button class="tab" id="tab-report" role="tab" aria-selected="false" aria-controls="panel-report">Report</button>
+  </nav>
+
+  <main class="tab-content">
+    <section id="panel-error" class="panel active" role="tabpanel" aria-labelledby="tab-error">
+      <button id="check-errors" class="action-button" type="button">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
+        </svg>
+        <span>Check code</span>
+      </button>
+      <div id="error-status" class="status" aria-live="polite">Waiting for code.</div>
+      <div class="tab-loader loader" role="status" aria-label="Generating results" hidden></div>
+      <div id="error-result" class="result" hidden></div>
+    </section>
+    <section id="panel-analysis" class="panel" role="tabpanel" aria-labelledby="tab-analysis" hidden>
+      <button id="analyze" class="action-button" type="button">Analyze code</button>
+      <div id="analysis-status" class="status" aria-live="polite">Waiting for code.</div>
+      <div class="tab-loader loader" role="status" aria-label="Generating results" hidden></div>
+      <div id="analysis-result" class="result" hidden></div>
+    </section>
+    <section id="panel-optimization" class="panel" role="tabpanel" aria-labelledby="tab-optimization" hidden>
+      <button id="optimize" class="action-button" type="button">Find optimization</button>
+      <div id="optimization-status" class="status" aria-live="polite">Waiting for code.</div>
+      <div class="tab-loader loader" role="status" aria-label="Generating results" hidden></div>
+      <div id="optimization-result" class="result" hidden></div>
+    </section>
+    <section id="panel-youtube" class="panel" role="tabpanel" aria-labelledby="tab-youtube" hidden>
+      <button id="search-youtube" class="action-button" type="button">Search YouTube</button>
+      <div id="youtube-status" class="status" aria-live="polite">Capture a question to search by its name.</div>
+      <div class="tab-loader loader" role="status" aria-label="Generating results" hidden></div>
+      <div id="youtube-result" class="result" hidden></div>
+    </section>
+    <section id="panel-report" class="panel" role="tabpanel" aria-labelledby="tab-report" hidden>
+      <div class="tab-loader loader" role="status" aria-label="Generating results" hidden></div>
+      <div id="report-result" class="result">Run an analysis or error check to build the report.</div>
+    </section>
+  </main>
+  </div>
+
+  <section id="settings-view" class="settings-view" aria-labelledby="settings-title" hidden>
+    <header class="settings-header">
+      <button id="settings-back" class="settings-back" type="button" aria-label="Back to code tools">←</button>
+      <h2 id="settings-title">Settings</h2>
+    </header>
+    <label class="settings-field" for="provider-select">API provider
+      <select id="provider-select">
+        <option value="openai">OpenAI</option>
+        <option value="gemini">Gemini</option>
+        <option value="groq">Groq</option>
+      </select>
+    </label>
+    <label id="groq-model-field" class="settings-field" for="groq-model" hidden>Groq model
+      <select id="groq-model">
+        <option value="openai/gpt-oss-120b">GPT OSS 120B</option>
+        <option value="openai/gpt-oss-20b">GPT OSS 20B</option>
+      </select>
+    </label>
+    <label class="settings-field" for="provider-api-key">API key
+      <input id="provider-api-key" type="password" autocomplete="off" spellcheck="false" maxlength="512" placeholder="Paste provider API key">
+    </label>
+    <div class="settings-note">The key is saved in this extension’s local storage and sent to your local app when you run an AI tool.</div>
+    <button id="settings-save" class="action-button settings-save" type="button">Save settings</button>
+    <div id="settings-status" class="status settings-status" aria-live="polite"></div>
+  </section>
+  <script src="popup.js"></script>
+  <script src="workflow.js"></script>
+</body>
+</html>

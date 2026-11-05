@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "LeetXtra",
+  "version": "1.3.0",
+  "description": "Capture problem details, editor code, language, and visible run or submit results from LeetCode.",
+  "permissions": ["activeTab", "scripting", "storage", "clipboardWrite"],
+  "host_permissions": ["http://127.0.0.1:8765/*"],
+  "action": {
+    "default_title": "Capture LeetCode problem",
+    "default_popup": "popup.html"
+  }
+}
